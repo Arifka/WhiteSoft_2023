@@ -1,7 +1,7 @@
 ## WhiteSoft_2023 Тестовое задание
 
 ## Описание
-Данный скрипт был создан для тестового <a href="https://github.com/thewhitesoft/student-2023-assignment">задания</a>.
+Данный скрипт был создан для тестового [задания](https://github.com/thewhitesoft/student-2023-assignment).
 
 ## Использование
 Запустить source.py
