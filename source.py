@@ -1,29 +1,18 @@
-import json
-import requests 
+import parse
+import output
+import solver
 
-url_data = "https://raw.githubusercontent.com/thewhitesoft/student-2023-assignment/main/data.json"
-url_replace = "https://raw.githubusercontent.com/thewhitesoft/student-2023-assignment/main/replacement.json"
+def main() -> int:
+    url_data = "https://raw.githubusercontent.com/thewhitesoft/student-2023-assignment/main/data.json"
+    url_replace = "https://raw.githubusercontent.com/thewhitesoft/student-2023-assignment/main/replacement.json"
 
-response = requests.get(url_data)
-data = response.json()
+    data = parse.get_data(url_data)
+    replaceItems = parse.get_data(url_replace)
 
-response = requests.get(url_replace)
-replaceItems = response.json()
+    result = solver.replace_data(replaceItems, data)
+    
+    output.write_data2json(result)
+    return 0
 
-result = []
-sizeRepItems = len(replaceItems)
-
-for str in data:
-    for indPair in range(sizeRepItems):
-        repEl = replaceItems[sizeRepItems - 1 - indPair]["replacement"]
-        sourceEl = replaceItems[sizeRepItems - 1 - indPair]["source"]
-        if (repEl in str):
-            if (sourceEl is None):
-                str = str.replace(repEl, "")
-            else:
-                str = str.replace(repEl, sourceEl)
-    result.append(str)
-
-
-with open ("result.json", "w") as write:
-    json.dump(result, write, indent=1)
+if __name__ == '__main__':
+    main()
