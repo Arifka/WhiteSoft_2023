@@ -1,5 +1,6 @@
 import json
 import requests 
+import output
 
 url_data = "https://raw.githubusercontent.com/thewhitesoft/student-2023-assignment/main/data.json"
 url_replace = "https://raw.githubusercontent.com/thewhitesoft/student-2023-assignment/main/replacement.json"
@@ -24,6 +25,4 @@ for str in data:
                 str = str.replace(repEl, sourceEl)
     result.append(str)
 
-
-with open ("result.json", "w") as write:
-    json.dump(result, write, indent=1)
+output.write_data2json(result)
