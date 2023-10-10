@@ -11,6 +11,7 @@ def replace_data(replaceItems: list, data: list) -> list:
                     str = str.replace(repEl, "")
                 else:
                     str = str.replace(repEl, sourceEl)
-        result.append(str)
+        if str != "":
+            result.append(str)
     
     return result
