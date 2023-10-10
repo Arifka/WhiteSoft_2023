@@ -12,5 +12,5 @@ data = response.json()
 response = requests.get(url_replace)
 replaceItems = response.json()
 
-result = solver(replaceItems, data)
+result = solver.replace_data(replaceItems, data)
 output.write_data2json(result)
