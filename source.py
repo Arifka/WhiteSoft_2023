@@ -11,17 +11,19 @@ response = requests.get(url_replace)
 replaceItems = response.json()
 
 result = []
+sizeRepItems = len(replaceItems)
 
 for str in data:
+    for indPair in range(sizeRepItems):
+        repEl = replaceItems[sizeRepItems - 1 - indPair]["replacement"]
+        sourceEl = replaceItems[sizeRepItems - 1 - indPair]["source"]
+        if (repEl in str):
+            if (sourceEl is None):
+                str = str.replace(repEl, "")
+            else:
+                str = str.replace(repEl, sourceEl)
     result.append(str)
-    replace = str
-    for it in replaceItems:
-        if (result[len(result) - 1] == it["replacement"]):
-            replace = it["source"]
-    if (replace == None):
-        result.pop()
-    else:
-        result[len(result) - 1] = replace
+
 
 with open ("result.json", "w") as write:
     json.dump(result, write, indent=1)
