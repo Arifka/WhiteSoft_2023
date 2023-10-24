@@ -1,6 +1,7 @@
 import requests
 import json
 
+
 def get_data(url):
     try:
         response = requests.get(url)
